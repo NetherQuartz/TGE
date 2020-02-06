@@ -1,3 +1,0 @@
-/home/vladimir/Documents/myPrograms/TGE/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/vladimir/Documents/myPrograms/TGE/cmake-build-debug/CMakeFiles/TGE.dir
-/home/vladimir/Documents/myPrograms/TGE/cmake-build-debug/CMakeFiles/edit_cache.dir
