@@ -16,7 +16,7 @@ unsigned int Grid::width() const {
 }
 
 void Grid::Place(const GameObject &gameObject) {
-    throw "Not implemented yet!";
+    throw std::exception();
 }
 
 void Grid::Place(unsigned int x, unsigned int y, Colors color) {
