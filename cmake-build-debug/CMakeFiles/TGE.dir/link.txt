@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/TGE.dir/main.cpp.o CMakeFiles/TGE.dir/GameObject.cpp.o CMakeFiles/TGE.dir/Grid.cpp.o  -o TGE 

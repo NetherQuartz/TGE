@@ -1,0 +1,4 @@
+/home/vladimir/.CLion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "CodeBlocks - Unix Makefiles" /home/vladimir/Documents/myPrograms/TGE
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/vladimir/Documents/myPrograms/TGE/cmake-build-debug
