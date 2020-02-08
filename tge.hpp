@@ -6,7 +6,7 @@
 
 namespace TGE {
 
-    struct Point {
+    struct Point final {
         unsigned x;
         unsigned y;
     };
