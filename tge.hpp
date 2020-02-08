@@ -69,10 +69,6 @@ namespace TGE {
 
     };
 
-    class Controls {
-        // ...
-    };
-
     inline void ColoredOutput(std::string text, Colors foreground, Colors background = Colors::Transparent);
 };
 
