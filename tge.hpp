@@ -69,15 +69,15 @@ namespace TGE {
 
     };
 
-    inline void ColoredOutput(std::string text, Colors foreground, Colors background = Colors::Transparent);
+    void ColoredOutput(std::string text, Colors foreground, Colors background = Colors::Transparent);
 };
 
-#if defined(_WIN32) || defined(WIN32)
-#include "tge_win.hpp"
-#elif defined(__unix__)
-#include "tge_unix.hpp"
-#else
-#error Unknown operating system! This code has been tested only on Windows and *nix systems!
-#endif
+//#if defined(_WIN32) || defined(WIN32)
+//#include "tge_win.hpp"
+//#elif defined(__unix__)
+//#include "tge_unix.hpp"
+//#else
+//#error Unknown operating system! This code has been tested only on Windows and *nix systems!
+//#endif
 
 #endif

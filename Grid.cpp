@@ -1,4 +1,6 @@
 #include "tge.hpp"
+#include <iostream>
+
 using namespace TGE;
 
 Grid::Grid(unsigned width, unsigned height) : width_(width), height_(height) {

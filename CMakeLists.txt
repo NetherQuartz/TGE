@@ -5,6 +5,15 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(TGE
-        tge.hpp tge_unix.hpp tge_win.hpp
-        main.cpp GameObject.cpp Grid.cpp)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+add_library(TGE SHARED
+        tge.hpp
+        ColoredOutput.cpp GameObject.cpp Grid.cpp)
+
+link_directories(${CMAKE_BINARY_DIR})
+
+message(STATUS "CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
+
+add_executable(test main.cpp)
+target_link_libraries(test TGE)
