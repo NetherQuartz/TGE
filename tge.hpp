@@ -4,6 +4,10 @@
 #include <vector>
 #include <string>
 
+#ifdef __unix__
+#include <termios.h>
+#endif
+
 namespace TGE {
 
     struct Point final {
@@ -50,6 +54,37 @@ namespace TGE {
         std::vector<std::vector<Colors>> grid_;
         unsigned width_;
         unsigned height_;
+    };
+
+    class Controls final {
+    public:
+
+        bool KBHit() const;
+        void EchoOn() const;
+        void EchoOff() const;
+        void BufferOn() const;
+        void BufferOff() const;
+        char GetInput() const;
+        ~Controls();
+
+        static Controls & Instance() {
+            static Controls instance;
+            return instance;
+        }
+
+        Controls(Controls const &) = delete;
+        Controls(Controls &&) = delete;
+        Controls &operator=(Controls const &) = delete;
+        Controls &operator=(Controls &&) = delete;
+
+    private:
+
+        Controls();
+
+#if defined(__unix__)
+        termios old_tio;
+        termios new_tio;
+#endif
     };
 
     class Game {
