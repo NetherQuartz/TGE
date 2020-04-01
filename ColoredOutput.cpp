@@ -81,10 +81,6 @@ namespace TGE {
 
 #elif defined(__unix__)
 
-#include <termios.h>
-#include <unistd.h>
-#include <sys/ioctl.h>
-
 namespace TGE {
     void ColoredOutput(std::string text, Colors foreground, Colors background) {
         std::string prefix = "\033[";
