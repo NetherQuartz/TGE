@@ -86,7 +86,7 @@ namespace TGE {
 #include <sys/ioctl.h>
 
 namespace TGE {
-    inline void ColoredOutput(std::string text, Colors foreground, Colors background) {
+    void ColoredOutput(std::string text, Colors foreground, Colors background) {
         std::string prefix = "\033[";
         switch (foreground) {
             case Colors::Black:
