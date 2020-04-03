@@ -4,7 +4,9 @@
 #if defined(_WIN32) || defined(WIN32)
 
 namespace TGE {
-
+    void ClearScreen() {
+        system("cls");
+    }
 };
 
 #elif defined(__unix__)
