@@ -24,33 +24,73 @@ namespace TGE {
         return bytesWaiting > 0;
     }
 
-    void Controls::EchoOn() const {
-        tcsetattr(STDIN_FILENO, TCSANOW, &old_tio);
-        tcflush(0, TCIFLUSH);
-    }
-
-    void Controls::EchoOff() const {
-        tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
-        tcflush(0, TCIFLUSH);
-    }
-
-    void Controls::BufferOn() const {
-        auto cur_tio = old_tio;
-        cur_tio.c_lflag &= ICANON;
+    void Controls::EchoOn() {
+        termios cur_tio = old_tio;
+        if (echo_on) {
+            return;
+        } else {
+            if (buffer_on) {
+                cur_tio = old_tio;
+            } else {
+                cur_tio.c_lflag &= ~ICANON;
+            }
+            echo_on = true;
+        }
         tcsetattr(STDIN_FILENO, TCSANOW, &cur_tio);
         tcflush(0, TCIFLUSH);
     }
 
-    void Controls::BufferOff() const {
-        auto cur_tio = old_tio;
-        cur_tio.c_lflag &= (~ICANON);
+    void Controls::EchoOff() {
+        termios cur_tio = old_tio;
+        if (!echo_on) {
+            return;
+        } else {
+            if (buffer_on) {
+                cur_tio.c_lflag &= ~ECHO ;
+            } else {
+                cur_tio.c_lflag &= (~ECHO & ~ICANON);
+            }
+            echo_on = false;
+        }
+        tcsetattr(STDIN_FILENO, TCSANOW, &cur_tio);
+        tcflush(0, TCIFLUSH);
+    }
+
+    void Controls::BufferOn() {
+        termios cur_tio = old_tio;
+        if (buffer_on) {
+            return;
+        } else {
+            if (echo_on) {
+                cur_tio = old_tio;
+            } else {
+                cur_tio.c_lflag &= ~ECHO;
+            }
+            buffer_on = true;
+        }
+        tcsetattr(STDIN_FILENO, TCSANOW, &cur_tio);
+        tcflush(0, TCIFLUSH);
+    }
+
+    void Controls::BufferOff() {
+        termios cur_tio = old_tio;
+        if (!buffer_on) {
+            return;
+        } else {
+            if (echo_on) {
+                cur_tio.c_lflag &= ~ICANON;
+            } else {
+                cur_tio.c_lflag &= (~ECHO & ~ICANON);
+            }
+            buffer_on = false;
+        }
         tcsetattr(STDIN_FILENO, TCSANOW, &cur_tio);
         tcflush(0, TCIFLUSH);
     }
 
     char Controls::GetInput() const {
         if (KBHit()) {
-            return getchar();
+            return (char)getchar();
         }
         return '\0';
     }
@@ -60,14 +100,9 @@ namespace TGE {
         tcflush(0, TCIFLUSH);
     }
 
-    Controls::Controls() : new_tio(termios()), old_tio(termios()) {
+    Controls::Controls() : old_tio(termios()) {
         tcgetattr(STDIN_FILENO, &old_tio);
-        new_tio = old_tio;
-        new_tio.c_lflag &= (~ICANON & ~ECHO);
-        tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
     }
 };
 
-#else
-#error Unknown operating system! This code has been tested only on Windows and *nix systems!
 #endif

@@ -1,6 +1,10 @@
 #ifndef TGE_HPP
 #define TGE_HPP
 
+#if !defined(__unix__) && !(defined(_WIN32) || defined(WIN32))
+#error Unknown operating system! This code has been tested only on Windows and *nix systems!
+#endif
+
 #include <vector>
 #include <string>
 
@@ -60,10 +64,10 @@ namespace TGE {
     public:
 
         bool KBHit() const;
-        void EchoOn() const;
-        void EchoOff() const;
-        void BufferOn() const;
-        void BufferOff() const;
+        void EchoOn();
+        void EchoOff();
+        void BufferOn();
+        void BufferOff();
         char GetInput() const;
         ~Controls();
 
@@ -81,9 +85,10 @@ namespace TGE {
 
         Controls();
 
-#if defined(__unix__)
+#ifdef __unix__
+        bool buffer_on = true;
+        bool echo_on = true;
         termios old_tio;
-        termios new_tio;
 #endif
     };
 
@@ -106,13 +111,5 @@ namespace TGE {
 
     void ColoredOutput(std::string text, Colors foreground, Colors background = Colors::Transparent);
 };
-
-//#if defined(_WIN32) || defined(WIN32)
-//#include "tge_win.hpp"
-//#elif defined(__unix__)
-//#include "tge_unix.hpp"
-//#else
-//#error Unknown operating system! This code has been tested only on Windows and *nix systems!
-//#endif
 
 #endif
