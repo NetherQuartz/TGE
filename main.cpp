@@ -18,7 +18,9 @@ int main() {
 
     char c;
     while ((c = controls.GetInput()) != '\033') {
-        if (c != '\0') {
+        if (c == 'c') {
+            TGE::ClearScreen();
+        } else if (c != '\0') {
             std::cout << c << std::endl;
         }
     }
