@@ -10,4 +10,20 @@ int main() {
     TGE::ColoredOutput("Q", TGE::Colors::White, TGE::Colors::Blue);
     TGE::ColoredOutput("+", TGE::Colors::White, TGE::Colors::Magenta);
     std::cout << '\n';
+
+    TGE::Controls & controls = TGE::Controls::Instance();
+    controls.BufferOff();
+    controls.EchoOn();
+    controls.BufferOn();
+    controls.EchoOn();
+    controls.BufferOff();
+    controls.EchoOff();
+    controls.EchoOn();
+    controls.BufferOff();
+    char c;
+    while ((c = controls.GetInput()) != '\033') {
+        if (c != '\0') {
+            std::cout << c << std::endl;
+        }
+    }
 }
