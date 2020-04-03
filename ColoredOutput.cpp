@@ -144,7 +144,24 @@ namespace TGE {
                 break;
         }
         prefix += "m";
-        std::cout << prefix << text << "\033[0m";
+        bool prevLineBreak = true;
+        for (char c : text) {
+            if (c == '\n') {
+                if (!prevLineBreak) {
+                    std::cout << "\033[0m";
+                    prevLineBreak = true;
+                }
+            } else {
+                if (prevLineBreak) {
+                    std::cout << prefix;
+                    prevLineBreak = false;
+                }
+            }
+            std::cout << c;
+        }
+        if (!prevLineBreak) {
+            std::cout << "\033[0m";
+        }
     }
 };
 
