@@ -12,14 +12,10 @@ int main() {
     std::cout << '\n';
 
     TGE::Controls & controls = TGE::Controls::Instance();
-    controls.BufferOff();
-    controls.EchoOn();
-    controls.BufferOn();
-    controls.EchoOn();
-    controls.BufferOff();
-    controls.EchoOff();
-    controls.EchoOn();
-    controls.BufferOff();
+
+    controls.SetInputVisibility(true);
+    controls.SetInputVisibility(false);
+
     char c;
     while ((c = controls.GetInput()) != '\033') {
         if (c != '\0') {
