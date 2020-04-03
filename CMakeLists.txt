@@ -9,7 +9,7 @@ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(TGE SHARED
         tge.hpp
-        ColoredOutput.cpp Controls.cpp GameObject.cpp Grid.cpp)
+        ColoredOutput.cpp Controls.cpp GameObject.cpp Grid.cpp ClearScreen.cpp)
 
 link_directories(${CMAKE_BINARY_DIR})
 

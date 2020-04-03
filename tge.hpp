@@ -118,6 +118,7 @@ namespace TGE {
     };
 
     void ColoredOutput(std::string text, Colors foreground, Colors background = Colors::Transparent);
+    void ClearScreen();
 };
 
 #endif
