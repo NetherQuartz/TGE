@@ -8,8 +8,10 @@
 #include <vector>
 #include <string>
 
-#ifdef __unix__
+#if defined(__unix__)
 #include <termios.h>
+#elif defined(_WIN32) || defined(WIN32)
+#include <windows.h>
 #endif
 
 namespace TGE {
@@ -64,11 +66,8 @@ namespace TGE {
     public:
 
         bool KBHit() const;
-        void EchoOn();
-        void EchoOff();
-        void BufferOn();
-        void BufferOff();
         char GetInput() const;
+        void SetInputVisibility(bool);
         ~Controls();
 
         static Controls & Instance() {
@@ -85,10 +84,19 @@ namespace TGE {
 
         Controls();
 
-#ifdef __unix__
+        void EchoOn();
+        void EchoOff();
+        void BufferOn();
+        void BufferOff();
+
         bool buffer_on = true;
         bool echo_on = true;
+
+#if defined(__unix__)
         termios old_tio;
+#elif defined(_WIN32) || defined(WIN32)
+        HANDLE console;
+        DWORD old_mode;
 #endif
     };
 
