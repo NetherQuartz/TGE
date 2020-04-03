@@ -198,6 +198,7 @@ namespace TGE {
 
     Controls::Controls() : old_tio(termios()) {
         tcgetattr(STDIN_FILENO, &old_tio);
+        BufferOff();
     }
 };
 
