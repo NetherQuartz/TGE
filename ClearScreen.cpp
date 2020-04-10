@@ -9,7 +9,7 @@ namespace TGE {
     }
 };
 
-#elif defined(__unix__)
+#elif defined(__unix__) || defined(__APPLE__)
 
 namespace TGE {
     void ClearScreen() {

@@ -1,14 +1,14 @@
 #ifndef TGE_HPP
 #define TGE_HPP
 
-#if !defined(__unix__) && !(defined(_WIN32) || defined(WIN32))
+#if !(defined(__unix__) || defined(__APPLE__)) && !(defined(_WIN32) || defined(WIN32))
 #error Unknown operating system! This code has been tested only on Windows and *nix systems!
 #endif
 
 #include <vector>
 #include <string>
 
-#if defined(__unix__)
+#if defined(__unix__) || defined(__APPLE__)
 #include <termios.h>
 #elif defined(_WIN32) || defined(WIN32)
 #include <windows.h>
@@ -92,7 +92,7 @@ namespace TGE {
         bool buffer_on = true;
         bool echo_on = true;
 
-#if defined(__unix__)
+#if defined(__unix__) || defined(__APPLE__)
         termios old_tio;
 #elif defined(_WIN32) || defined(WIN32)
         HANDLE console;

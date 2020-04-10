@@ -106,7 +106,7 @@ namespace TGE {
     }
 };
 
-#elif defined(__unix__)
+#elif defined(__unix__) || defined(__APPLE__)
 
 #include <termios.h>
 #include <unistd.h>

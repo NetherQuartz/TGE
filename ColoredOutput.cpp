@@ -79,7 +79,7 @@ namespace TGE {
     }
 };
 
-#elif defined(__unix__)
+#elif defined(__unix__) || defined(__APPLE__)
 
 namespace TGE {
     void ColoredOutput(std::string text, Colors foreground, Colors background) {
@@ -165,6 +165,4 @@ namespace TGE {
     }
 };
 
-#else
-#error Unknown operating system! This code has been tested only on Windows and *nix systems!
 #endif
