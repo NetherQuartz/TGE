@@ -7,7 +7,7 @@
 
 namespace TGE {
 
-    void ColoredOutput(std::string text, TGE::Colors foreground, TGE::Colors background) {
+    void ColoredOutput(const std::string & text, TGE::Colors foreground, TGE::Colors background) {
 
         WORD attribs = 0;
 
@@ -82,7 +82,7 @@ namespace TGE {
 #elif defined(__unix__) || defined(__APPLE__)
 
 namespace TGE {
-    void ColoredOutput(std::string text, Colors foreground, Colors background) {
+    void ColoredOutput(const std::string & text, Colors foreground, Colors background) {
         std::string prefix = "\033[";
         switch (foreground) {
             case Colors::Black:
