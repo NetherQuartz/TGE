@@ -33,3 +33,8 @@
 
 cmake-build-debug*
 .idea
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+test
