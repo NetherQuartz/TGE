@@ -29,16 +29,21 @@ namespace TGE {
     class GameObject {
     public:
 
-        explicit GameObject(Point);
-        GameObject(int, int);
+        explicit GameObject(Point, std::vector<std::vector<Colors>>);
 
         virtual ~GameObject();
 
-        Point position() const;
+        Point getPosition() const;
+        void setPosition(Point);
+        void move(Point);
+
+        std::vector<std::vector<Colors>> & body();
+        const std::vector<std::vector<Colors>> & body() const;
 
     protected:
         
         Point position_;
+        std::vector<std::vector<Colors>> body_;
     };
 
     class Grid {
