@@ -19,6 +19,7 @@ namespace TGE {
     struct Point final {
         unsigned x;
         unsigned y;
+        unsigned z;
     };
 
     enum class Colors {
