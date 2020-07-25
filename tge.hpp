@@ -17,9 +17,9 @@
 namespace TGE {
 
     struct Point final {
-        unsigned x;
-        unsigned y;
-        unsigned z;
+        int x;
+        int y;
+        int z;
     };
 
     enum class Colors {
@@ -30,7 +30,7 @@ namespace TGE {
     public:
 
         explicit GameObject(Point);
-        GameObject(unsigned, unsigned);
+        GameObject(int, int);
 
         virtual ~GameObject();
 

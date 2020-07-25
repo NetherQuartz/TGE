@@ -1,7 +1,7 @@
 #include "tge.hpp"
 using namespace TGE;
 
-GameObject::GameObject(unsigned x, unsigned y) : position_({x, y}) {
+GameObject::GameObject(int x, int y) : position_({x, y, 0}) {
 
 }
 
