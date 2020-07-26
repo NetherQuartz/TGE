@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <set>
 
 #if defined(__unix__) || defined(__APPLE__)
 #include <termios.h>
@@ -40,6 +41,8 @@ namespace TGE {
         std::vector<std::vector<Colors>> & body();
         const std::vector<std::vector<Colors>> & body() const;
 
+        static bool compareByZ(const GameObject *, const GameObject *);
+
     protected:
         
         Point position_;
@@ -49,13 +52,11 @@ namespace TGE {
     class Grid {
     public:
 
-        Grid(unsigned width, unsigned height);
+        Grid(unsigned width, unsigned height, Colors fill = Colors::Transparent);
         ~Grid();
 
-        void Print() const;
+        void Draw();
 
-        void Place(unsigned x, unsigned y, Colors color);
-        void Place(Point position, Colors color);
         void Place(const GameObject & gameObject);
 
         unsigned width() const;
@@ -64,6 +65,7 @@ namespace TGE {
     private:
 
         std::vector<std::vector<Colors>> grid_;
+        std::set<const GameObject*, decltype(GameObject::compareByZ)*> gameObjects_;
         unsigned width_;
         unsigned height_;
     };

@@ -30,3 +30,7 @@ void GameObject::move(Point shift) {
     position_.y += shift.y;
     position_.z += shift.z;
 }
+
+bool GameObject::compareByZ(const GameObject * lhs, const GameObject * rhs) {
+    return lhs->getPosition().z < rhs->getPosition().z;
+}
