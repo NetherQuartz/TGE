@@ -3,7 +3,7 @@
 
 using namespace TGE;
 
-Grid::Grid(unsigned width, unsigned height, Colors fill) : width_(width), height_(height) {
+Grid::Grid(unsigned width, unsigned height, Colors fill) : width_(width), height_(height), fill_(fill) {
     grid_ = std::vector<std::vector<Colors>>(width, std::vector<Colors>(height, fill));
     gameObjects_ = std::set<const GameObject*, decltype(GameObject::compareByZ)*>(GameObject::compareByZ);
 }
@@ -23,6 +23,11 @@ void Grid::Place(const GameObject &gameObject) {
 }
 
 void Grid::Draw() {
+    for (size_t j = 0; j < height_; ++j) {
+        for (size_t i = 0; i < width_; ++i) {
+            grid_[i][j] = fill_;
+        }
+    }
     for (const GameObject * obj : gameObjects_) {
         for (size_t i = 0; i < obj->body().size(); ++i) {
             for (size_t j = 0; j < obj->body()[i].size(); ++j) {
@@ -34,7 +39,6 @@ void Grid::Draw() {
             }
         }
     }
-
     for (size_t j = 0; j < height_; ++j) {
         for (size_t i = 0; i < width_; ++i) {
             ColoredOutput("  ", Colors::Transparent, grid_[i][j]);

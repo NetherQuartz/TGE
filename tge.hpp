@@ -68,6 +68,7 @@ namespace TGE {
         std::set<const GameObject*, decltype(GameObject::compareByZ)*> gameObjects_;
         unsigned width_;
         unsigned height_;
+        Colors fill_;
     };
 
     class Controls final {
